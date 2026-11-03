@@ -1,0 +1,32 @@
+train:
+  num_epochs: 11 #1000
+  ss_batch_size: 50
+  learning_rate: 0.001
+  num_runs:
+  seed: # 1234
+  tlm_size: 18
+  n_axes_to_keep: 8
+validate:
+  ss_batch_size: 100
+  coherence_filter: True # False # apply coherence filter on llrs in evaluation mode
+  coherence_filter_threshold_bias_axis: 0.95 # threshold cllr. axes with cllr < threshold are treated as discriminating axes,
+  #      the others as bias axes
+  coherence_filter_max_iterations: 2 # the maximum number of incoherent pairs to be removed
+  coherence_filter_exclude_llrs_smaller_than: -6 # exclude llrs in discriminating axes that are smaller than this number
+test:
+  ss_batch_size: 100
+cllr_crit_train:
+  mode: "train_focus_spread_sum"
+  mode_options:
+    focus_threshold: 0.95
+    focus_weight: 1
+saving:
+  save: True
+  output_parent: "output/try/"
+cllr_crit_eval:
+  axes_to_monitor: 'all' # 'all' or 'focus' # in evaluation mode, one of two losses may be tracked:
+  # the cllr for sum_llrs for all axes, or the cllr for sum_llrs for all axes with cllr_ax < threshold_for_focal_evaluate
+  threshold_for_focal_evaluate: 0.95 # Calculate additional cllr for sum_LLRs for all axes with cllr_ax < cllr_threshold_evaluate.
+  # Also works when axes_to_monitor is set to 'all'.
+#   "output/glass_1_rep/tlm_two_proj_initrandn_naive_cllr_random_proj_ttv/" # "output/try/"
+threshold_for_mean_cllr: 0.95 # when calculating the mean of cllr_train over axes, skip axes with cllr > this value

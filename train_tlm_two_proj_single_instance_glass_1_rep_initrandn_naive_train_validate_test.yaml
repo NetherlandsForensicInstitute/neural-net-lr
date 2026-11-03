@@ -1,0 +1,35 @@
+train:
+  num_epochs: 11 #1000
+  ss_batch_size: 50
+  learning_rate: 0.001
+  tlm_size: 18
+  n_axes_to_keep: #17
+  num_runs:
+  seed: # 1234
+  sample_size_sigma2_w: 2000 #20000
+  empirical_init: False
+validate:
+  ss_batch_size: 50
+  train_coherence_filters: True # False
+  coherence_filter_threshold_bias_axis: [ 1, 1.5 ] # this is the threshold for variance ratio H1/H0
+  coherence_filter_exclude_llrs_smaller_than: [ -9.0 ]
+  coherence_filter_max_iterations: [ 2 ]
+  train_clip_denominators: False
+  clip_denominator_percentage: [ 0.05 ]
+  also_predict_specific_source: False
+test:
+  ss_batch_size: 50
+cllr_crit_train:
+  mode: "train_random_projection"
+saving:
+  save: True
+  output_parent: "output/try/"
+cllr_crit_eval:
+  axes_to_monitor: 'all' # 'all' or 'focus' # in evaluation mode, one of two losses may be tracked:
+  # the cllr for sum_llrs for all axes, or the cllr for sum_llrs for all axes with cllr_ax < threshold_for_focal_evaluate
+  threshold_for_focal_evaluate: # Calculate additional cllr for sum_LLRs for all axes with cllr_ax < cllr_threshold_evaluate.
+  # Also works when axes_to_monitor is set to 'all'.
+#   "output/glass_1_rep/tlm_initrandn_naive_cllr_random_proj_ttv/" # "output/try/"
+save_epoch_past_best_epoch: 200
+threshold_for_mean_cllr: 0.95 # when calculating the mean of cllr_train over axes, skip axes with cllr > this value
+show_plots: True

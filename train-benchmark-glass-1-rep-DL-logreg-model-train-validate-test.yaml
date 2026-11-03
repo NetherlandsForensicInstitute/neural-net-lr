@@ -1,0 +1,11 @@
+train:
+  num_epochs: 11 #1000
+  ss_batch_size: 20
+validate:
+  ss_batch_size: 100
+test:
+  ss_batch_size: 100
+saving:
+  save: True
+  output_parent: "output/try/" # "output/glass_1_rep/benchmark_DL_logreg_model_ttv/" #
+# "output/glass_1_rep/benchmark_DL_model_ttv/"
